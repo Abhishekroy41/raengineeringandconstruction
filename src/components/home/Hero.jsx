@@ -5,6 +5,7 @@ import { company } from "../../data/company";
 
 export default function Hero() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [firstImageLoaded, setFirstImageLoaded] = useState(false);
 
   const bgImages = [
     `${import.meta.env.BASE_URL}Images/Home_page_img/Home_img01 (1).jpg`,
@@ -16,23 +17,39 @@ export default function Hero() {
   ];
 
   useEffect(() => {
+    // Only start the carousel interval after the first image has fully loaded
+    if (!firstImageLoaded) return;
+
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % bgImages.length);
     }, 3000); // Change image every 3 seconds
 
     return () => clearInterval(interval);
-  }, [bgImages.length]);
+  }, [firstImageLoaded, bgImages.length]);
 
   return (
     <section className="relative overflow-hidden bg-[var(--color-navy-950)] text-white">
       {/* Background Image Carousel Layer */}
-      {bgImages.map((src, index) => (
+      {/* 1. Priority Loading for First Image (Gets 100% bandwidth immediately) */}
+      <img
+        src={bgImages[0]}
+        alt="Background 1"
+        onLoad={() => setFirstImageLoaded(true)}
+        fetchpriority="high"
+        className={`absolute inset-0 w-full h-full object-cover transform-gpu pointer-events-none transition-opacity duration-700 ease-in-out ${
+          currentImageIndex === 0 ? "opacity-100" : "opacity-0"
+        }`}
+      />
+      
+      {/* 2. Sequential Injection of Remaining Heavy Images */}
+      {firstImageLoaded && bgImages.slice(1).map((src, index) => (
         <img
           key={src}
           src={src}
-          alt={`Background ${index + 1}`}
+          alt={`Background ${index + 2}`}
+          loading="lazy"
           className={`absolute inset-0 w-full h-full object-cover transform-gpu pointer-events-none transition-opacity duration-700 ease-in-out ${
-            index === currentImageIndex ? "opacity-100" : "opacity-0"
+            index + 1 === currentImageIndex ? "opacity-100" : "opacity-0"
           }`}
         />
       ))}
