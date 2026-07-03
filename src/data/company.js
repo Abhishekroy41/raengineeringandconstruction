@@ -33,6 +33,7 @@ export const company = {
     phoneDisplay: "+91 89629 44790",
     email: "raencchw89@gmail.com",
     instagram: "https://www.instagram.com/r_a_engineering_cwa",
+    facebook: "https://www.facebook.com/share/1FHueqbvRR/",
   },
 
   // Kept in one place so the "Compliance" section and footer
@@ -46,15 +47,16 @@ export const company = {
     {
       id: "eq-1",
       badge: "DGPS",
-      title: "02 Nos. CHCNAV i89 DGPS",
+      title: "CHCNAV i89 DGPS",
       subtitle: "DUAL FREQUENCY GNSS RECEIVER",
       description: "High-precision RTK surveying for control points, topographical surveys, boundary demarcation, and mapping.",
-      image: "./Images/machine2.jpeg"
+      image: "./Images/dgps_machine.jpeg",
+      imageClass: "object-top"
     },
     {
       id: "eq-2",
       badge: "TS",
-      title: "01 No. GeoMax Total Station",
+      title: "GeoMax Total Station",
       subtitle: "2″ ACCURACY",
       description: "Precision instrument for layout, setting out, topographical survey, contour survey, and engineering measurements.",
       image: "./Images/machine1.jpeg"

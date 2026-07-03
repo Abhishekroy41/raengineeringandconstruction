@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
   { label: "Projects", href: "/projects" },
+  { label: "Gallery", href: "/gallery" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -38,7 +39,7 @@ export default function Navbar() {
         {/* Left: Brand / Logo */}
         <Link to="/" className="flex items-center gap-3 md:gap-4 group">
           <img 
-            src={`${import.meta.env.BASE_URL}Images/Home_page_img/logo.jpeg`} 
+            src={`${import.meta.env.BASE_URL}Images/Home_page_img/logo-removebg-preview.png`} 
             alt="R.A. Engineering Logo" 
             className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 object-contain rounded-full shadow-sm group-hover:scale-105 transition-transform duration-300" 
           />

@@ -50,7 +50,7 @@ export default function Projects() {
               <div className="relative w-48 h-48 bg-white/5 backdrop-blur-md border border-white/20 rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.8)] z-20 flex items-center justify-center p-3 transform transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_60px_-12px_rgba(193,146,47,0.3)]">
                 <div className="w-full h-full bg-white rounded-xl overflow-hidden shadow-inner flex items-center justify-center">
                   <img 
-                    src={`${base}Images/Home_page_img/logo.jpeg`} 
+                    src={`${base}Images/Home_page_img/logo-removebg-preview.png`} 
                     alt="RA Engineering Logo" 
                     className="w-full h-full object-contain p-2 transform group-hover:scale-105 transition-transform duration-700"
                   />

@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import AutoSlider from "../common/AutoSlider";
+import { company } from "../../data/company";
 
 const FacebookIcon = ({ size = 18 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -81,7 +82,7 @@ export default function AboutIntro() {
               
               {/* Social Media Links */}
               <div className="flex items-center gap-4 border-l-2 border-[var(--color-mist)] pl-6">
-                <a href="#" aria-label="Facebook" className="w-10 h-10 rounded-full bg-[var(--color-paper)] flex items-center justify-center text-[var(--color-navy-700)] hover:bg-[#1877F2] hover:text-white transition-colors shadow-sm">
+                <a href={company.contact.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-10 h-10 rounded-full bg-[var(--color-paper)] flex items-center justify-center text-[var(--color-navy-700)] hover:bg-[#1877F2] hover:text-white transition-colors shadow-sm">
                   <FacebookIcon size={18} />
                 </a>
                 <a href="#" aria-label="Twitter" className="w-10 h-10 rounded-full bg-[var(--color-paper)] flex items-center justify-center text-[var(--color-navy-700)] hover:bg-[#1DA1F2] hover:text-white transition-colors shadow-sm">

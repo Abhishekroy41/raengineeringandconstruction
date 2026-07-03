@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function AutoSlider({ images, altBase = "Image", containerClassName = "", imageClassName = "" }) {
+export default function AutoSlider({ images, altBase = "Image", containerClassName = "", imageClassName = "object-cover" }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   
   // Normalize input to an array
@@ -35,7 +35,7 @@ export default function AutoSlider({ images, altBase = "Image", containerClassNa
           key={idx}
           src={src}
           alt={`${altBase} - ${idx + 1}`}
-          className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-in-out ${imageClassName} ${
+          className={`absolute inset-0 w-full h-full transition-all duration-1000 ease-in-out ${imageClassName} ${
             idx === currentIndex ? "opacity-100" : "opacity-0"
           }`}
         />

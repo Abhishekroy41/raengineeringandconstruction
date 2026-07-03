@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Compass, Map, Building2, Ruler, Target, DraftingCompass, Mountain, LayoutDashboard } from "lucide-react";
 import SectionHeading from "../common/SectionHeading";
 import AutoSlider from "../common/AutoSlider";
@@ -8,7 +9,11 @@ const topServices = [
   { 
     ...surveyServices[0], 
     icon: Map,
-    images: ["./Images/maptopographic.jpeg"]
+    images: [
+      "./Images/topogr__.png",
+      "./Images/topograp_02.png",
+      "./Images/topgra_03.png"
+    ]
   }, // Topographical
   { 
     ...surveyServices[1], 
@@ -35,18 +40,15 @@ const topServices = [
     ...surveyServices[2], 
     icon: Compass,
     images: [
-      "./Images/watersupply1.jpeg",
-      "./Images/watersupply2.jpeg",
-      "./Images/watersupply3.jpeg"
+      "./Images/watersupply (1).jpeg",
+      "./Images/watersupply (2).jpeg",
+      "./Images/watersupply (3).jpeg"
     ]
   }, // Water Supply
   { 
     ...surveyServices[11], 
     icon: Building2,
-    images: [
-      "./Images/drone_shot.jpg",
-      "./Images/machine1.jpeg"
-    ]
+    images: ["./Images/as_built_img.jpeg"]
   }, // As-Built
   { 
     ...surveyServices[9], 
@@ -57,16 +59,37 @@ const topServices = [
     ...surveyServices[10], 
     icon: DraftingCompass,
     images: [
-      "./Images/tgdepmachine3.jpg",
-      "./Images/total_station_survey.jpeg"
+      "./Gallery/Total_station_work/WhatsApp Image 2026-07-03 at 5.27.14 PM.jpeg",
+      "./Gallery/Total_station_work/WhatsApp Image 2026-07-03 at 5.27.14 PM (1).jpeg",
+      "./Gallery/Total_station_work/WhatsApp Image 2026-07-03 at 5.27.14 PM (2).jpeg"
     ]
   }, // Total Station
 ];
 
 export default function ServicesOverview() {
   return (
-    <section id="services" className="bg-white relative pt-10 md:pt-16 pb-20 md:pb-28">
-      <div className="max-w-7xl mx-auto px-5 md:px-8 xl:px-12">
+    <section id="services" className="bg-white relative pt-16 md:pt-24 pb-20 md:pb-28 overflow-hidden">
+      
+      {/* Top SVG Curve Divider (Paper to White) */}
+      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-20 drop-shadow-md">
+        <svg className="relative block w-full h-[40px] md:h-[80px]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M0,0 C400,120 800,120 1200,0 Z" className="fill-[var(--color-paper)]"></path>
+        </svg>
+      </div>
+      
+      {/* Decorative Blueprint Grid from left and right margins */}
+      <div className="absolute inset-y-0 left-0 w-32 md:w-80 bg-[linear-gradient(to_right,#0f172a1a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a1a_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:linear-gradient(to_right,black,transparent)] pointer-events-none"></div>
+      <div className="absolute inset-y-0 right-0 w-32 md:w-80 bg-[linear-gradient(to_right,#0f172a1a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a1a_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:linear-gradient(to_left,black,transparent)] pointer-events-none"></div>
+      
+      {/* Topographic Map accents on the sides */}
+      <div className="hidden lg:block absolute top-0 left-0 w-96 h-full contour-bg-light opacity-80 [mask-image:linear-gradient(to_right,black_20%,transparent)] pointer-events-none"></div>
+      <div className="hidden lg:block absolute top-0 right-0 w-96 h-full contour-bg-light opacity-80 [mask-image:linear-gradient(to_left,black_20%,transparent)] pointer-events-none"></div>
+      
+      {/* Soft Glow Orbs */}
+      <div className="absolute top-1/4 left-[-10%] w-[50%] h-[50%] bg-[var(--color-gold-500)]/15 rounded-full blur-[120px] pointer-events-none mix-blend-multiply"></div>
+      <div className="absolute bottom-1/4 right-[-10%] w-[50%] h-[50%] bg-[var(--color-navy-800)]/10 rounded-full blur-[120px] pointer-events-none mix-blend-multiply"></div>
+      
+      <div className="max-w-7xl mx-auto px-5 md:px-8 xl:px-12 relative z-10">
         
         <div className="flex flex-col items-center text-center mb-12">
           <SectionHeading
@@ -91,7 +114,7 @@ export default function ServicesOverview() {
                     images={service.images || []} 
                     altBase={service.title}
                     containerClassName="absolute inset-0 w-full h-full"
-                    imageClassName="group-hover:scale-105"
+                    imageClassName={`object-cover group-hover:scale-110 ${service.imageClass || ""}`}
                   />
                   {/* Dark tint that disappears on hover */}
                   <div className="absolute inset-0 bg-[var(--color-navy-900)]/10 group-hover:bg-transparent transition-colors duration-500 z-20 pointer-events-none" />
@@ -114,9 +137,9 @@ export default function ServicesOverview() {
         </div>
 
         <div className="mt-14 text-center relative z-10 pb-16">
-           <a href="/services" className="inline-flex items-center justify-center px-8 py-3.5 bg-[var(--color-navy-800)] text-white font-mono-data text-xs uppercase tracking-widest font-bold rounded-sm hover:bg-[var(--color-gold-500)] hover:text-[var(--color-navy-900)] transition-colors shadow-md">
+           <Link to="/services" className="inline-flex items-center justify-center px-8 py-3.5 bg-[var(--color-navy-800)] text-white font-mono-data text-xs uppercase tracking-widest font-bold rounded-sm hover:bg-[var(--color-gold-500)] hover:text-[var(--color-navy-900)] transition-colors shadow-md">
              View All Services
-           </a>
+           </Link>
         </div>
 
       </div>
