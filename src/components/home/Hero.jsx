@@ -1,16 +1,29 @@
+import { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Phone } from "lucide-react";
 import { company } from "../../data/company";
 
 export default function Hero() {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    // Some browsers block autoplay or sometimes leave the video blank on initial render.
+    // Explicitly playing it via ref ensures it starts.
+    if (videoRef.current) {
+      videoRef.current.play().catch((e) => console.log("Autoplay prevented:", e));
+    }
+  }, []);
+
   return (
     <section className="relative overflow-hidden bg-[var(--color-navy-950)] text-white">
       {/* Background Video Layer */}
       <video
+        ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
+        preload="auto"
         className="absolute inset-0 w-full h-full object-cover transform-gpu pointer-events-none"
       >
         <source src={`${import.meta.env.BASE_URL}Videos/Home_bg_01.mp4`} type="video/mp4" />
