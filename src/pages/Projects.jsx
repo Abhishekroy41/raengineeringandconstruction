@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SectionHeading from "../components/common/SectionHeading";
 import ProjectCard from "../components/projects/ProjectCard";
 import { projectsData, projectCategories } from "../data/projects";
@@ -6,6 +6,13 @@ import { projectsData, projectCategories } from "../data/projects";
 export default function Projects() {
   const base = import.meta.env.BASE_URL;
   const [activeCategory, setActiveCategory] = useState("all");
+  const [showVideos, setShowVideos] = useState(false);
+
+  useEffect(() => {
+    // Defer rendering heavy videos to prevent navigation lag during framer-motion transitions
+    const timer = setTimeout(() => setShowVideos(true), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const filteredProjects = activeCategory === "all"
     ? projectsData
@@ -126,16 +133,22 @@ export default function Projects() {
           
           <div className="mt-12 grid md:grid-cols-2 gap-8">
             <div className="rounded-2xl overflow-hidden shadow-[0_8px_30px_-4px_rgba(0,0,0,0.1)] border-[4px] border-white bg-[var(--color-mist)] group relative">
-              <video 
-                src={`${base}Videos/road_construct.mp4`} 
-                autoPlay 
-                loop 
-                muted 
-                playsInline
-                controls
-                preload="metadata"
-                className="w-full h-[300px] md:h-[400px] object-cover transform transition-transform duration-700 group-hover:scale-105"
-              />
+              {showVideos ? (
+                <video 
+                  src={`${base}Videos/road_construct.mp4`} 
+                  loop 
+                  muted 
+                  playsInline
+                  preload="metadata"
+                  onMouseEnter={(e) => e.target.play()}
+                  onMouseLeave={(e) => e.target.pause()}
+                  className="w-full h-[300px] md:h-[400px] object-cover transform transition-transform duration-700 group-hover:scale-105"
+                />
+              ) : (
+                <div className="w-full h-[300px] md:h-[400px] bg-[var(--color-mist)] flex items-center justify-center">
+                  <span className="text-[var(--color-slate)] font-mono-data text-xs uppercase animate-pulse">Loading Video...</span>
+                </div>
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
                 <div>
                   <p className="text-[var(--color-gold-500)] font-mono-data text-xs uppercase tracking-widest mb-2">Project Operation</p>
@@ -145,16 +158,22 @@ export default function Projects() {
             </div>
 
             <div className="rounded-2xl overflow-hidden shadow-[0_8px_30px_-4px_rgba(0,0,0,0.1)] border-[4px] border-white bg-[var(--color-mist)] group relative">
-              <video 
-                src={`${base}Videos/road_drill.mp4`} 
-                autoPlay 
-                loop 
-                muted 
-                playsInline
-                controls
-                preload="metadata"
-                className="w-full h-[300px] md:h-[400px] object-cover transform transition-transform duration-700 group-hover:scale-105"
-              />
+              {showVideos ? (
+                <video 
+                  src={`${base}Videos/road_drill.mp4`} 
+                  loop 
+                  muted 
+                  playsInline
+                  preload="metadata"
+                  onMouseEnter={(e) => e.target.play()}
+                  onMouseLeave={(e) => e.target.pause()}
+                  className="w-full h-[300px] md:h-[400px] object-cover transform transition-transform duration-700 group-hover:scale-105"
+                />
+              ) : (
+                <div className="w-full h-[300px] md:h-[400px] bg-[var(--color-mist)] flex items-center justify-center">
+                  <span className="text-[var(--color-slate)] font-mono-data text-xs uppercase animate-pulse">Loading Video...</span>
+                </div>
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
                 <div>
                   <p className="text-[var(--color-gold-500)] font-mono-data text-xs uppercase tracking-widest mb-2">Heavy Machinery</p>
