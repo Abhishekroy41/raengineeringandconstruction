@@ -1,4 +1,5 @@
 import { Target, Building2, PencilRuler, Users, Handshake } from "lucide-react";
+import { motion } from "framer-motion";
 import { valueProps } from "../../data/services";
 
 const ICONS = {
@@ -14,17 +15,23 @@ export default function WhyChooseUs() {
     <section className="bg-blue-50 relative border-t border-[var(--color-navy-800)]/8">
       <div className="max-w-6xl mx-auto px-5 md:px-8 pt-12 pb-24 relative z-10">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8">
-          {valueProps.map((vp) => {
+          {valueProps.map((vp, index) => {
             const Icon = ICONS[vp.icon];
             return (
-              <div key={vp.id} className="flex flex-col items-center text-center gap-3 group">
+              <motion.div 
+                key={vp.id} 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="flex flex-col items-center text-center gap-3 group">
                 <span className="flex items-center justify-center h-16 w-16 rounded-full bg-[var(--color-mist)] text-[var(--color-navy-800)] border-2 border-white shadow-sm group-hover:scale-110 group-hover:bg-[var(--color-gold-500)] group-hover:text-white transition-all duration-300">
                   <Icon size={28} />
                 </span>
                 <span className="text-xs md:text-sm font-medium text-[var(--color-ink)] leading-snug group-hover:text-[var(--color-gold-600)] transition-colors">
                   {vp.label}
                 </span>
-              </div>
+              </motion.div>
             );
           })}
         </div>

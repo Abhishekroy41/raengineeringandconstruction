@@ -1,5 +1,6 @@
 import SectionHeading from "../common/SectionHeading";
 import { company } from "../../data/company";
+import { motion } from "framer-motion";
 
 export default function Technology() {
   return (
@@ -16,8 +17,14 @@ export default function Technology() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
-          {company.equipment.map((eq) => (
-            <div key={eq.id} className="bg-white rounded-xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.1)] transition-shadow overflow-hidden border border-[var(--color-mist)] flex flex-col">
+          {company.equipment.map((eq, index) => (
+            <motion.div 
+              key={eq.id}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="bg-white rounded-xl shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.1)] transition-shadow overflow-hidden border border-[var(--color-mist)] flex flex-col">
               
               {/* Image Container with Badge */}
               <div className="relative h-48 bg-[var(--color-mist)] flex flex-col items-center justify-center contour-bg-light">
@@ -44,7 +51,7 @@ export default function Technology() {
                 </p>
               </div>
               
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

@@ -1,8 +1,24 @@
-import { MapPin, Phone, Mail, ExternalLink } from "lucide-react";
+import { useState } from "react";
+import { MapPin, Phone, Mail, ExternalLink, Loader2, CheckCircle2 } from "lucide-react";
 import SectionHeading from "../components/common/SectionHeading";
 import { company } from "../data/company";
 
 export default function Contact() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    // Simulate API call
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSuccess(true);
+      // Reset success message after 3 seconds
+      setTimeout(() => setIsSuccess(false), 3000);
+    }, 1500);
+  };
+
   return (
     <div className="bg-[var(--color-paper)] min-h-screen pt-24 pb-20">
       <div className="max-w-6xl mx-auto px-5 md:px-8">
@@ -103,12 +119,13 @@ export default function Contact() {
             <div className="bg-white p-8 md:p-10 rounded-2xl border border-[var(--color-mist)] shadow-sm">
               <h3 className="font-display text-2xl text-[var(--color-navy-800)] mb-6">Send a Message</h3>
               
-              <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-5" onSubmit={handleSubmit}>
                 <div className="grid md:grid-cols-2 gap-5">
                   <div className="space-y-1.5">
                     <label className="font-mono-data text-xs uppercase tracking-wider text-[var(--color-slate)]">Full Name</label>
                     <input 
                       type="text" 
+                      required
                       className="w-full bg-[var(--color-paper)] border border-[var(--color-mist)] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--color-gold-500)] focus:border-transparent transition-all"
                       placeholder="John Doe"
                     />
@@ -117,6 +134,7 @@ export default function Contact() {
                     <label className="font-mono-data text-xs uppercase tracking-wider text-[var(--color-slate)]">Phone Number</label>
                     <input 
                       type="tel" 
+                      required
                       className="w-full bg-[var(--color-paper)] border border-[var(--color-mist)] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--color-gold-500)] focus:border-transparent transition-all"
                       placeholder="+91 00000 00000"
                     />
@@ -127,6 +145,7 @@ export default function Contact() {
                   <label className="font-mono-data text-xs uppercase tracking-wider text-[var(--color-slate)]">Email Address</label>
                   <input 
                     type="email" 
+                    required
                     className="w-full bg-[var(--color-paper)] border border-[var(--color-mist)] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--color-gold-500)] focus:border-transparent transition-all"
                     placeholder="john@example.com"
                   />
@@ -134,7 +153,7 @@ export default function Contact() {
 
                 <div className="space-y-1.5">
                   <label className="font-mono-data text-xs uppercase tracking-wider text-[var(--color-slate)]">Service Interested In</label>
-                  <select className="w-full bg-[var(--color-paper)] border border-[var(--color-mist)] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--color-gold-500)] focus:border-transparent transition-all text-[var(--color-ink)]">
+                  <select required className="w-full bg-[var(--color-paper)] border border-[var(--color-mist)] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--color-gold-500)] focus:border-transparent transition-all text-[var(--color-ink)]">
                     <option value="">Select a service...</option>
                     <option value="survey">Surveying & Mapping</option>
                     <option value="construction">Construction & Layout</option>
@@ -147,6 +166,7 @@ export default function Contact() {
                   <label className="font-mono-data text-xs uppercase tracking-wider text-[var(--color-slate)]">Message / Project Details</label>
                   <textarea 
                     rows="4" 
+                    required
                     className="w-full bg-[var(--color-paper)] border border-[var(--color-mist)] rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--color-gold-500)] focus:border-transparent transition-all resize-none"
                     placeholder="Tell us about your project requirements..."
                   ></textarea>
@@ -154,9 +174,25 @@ export default function Contact() {
 
                 <button 
                   type="submit" 
-                  className="w-full bg-[var(--color-gold-500)] hover:bg-[var(--color-gold-600)] text-white font-medium py-3.5 rounded-lg transition-colors mt-2"
+                  disabled={isSubmitting || isSuccess}
+                  className={
+                    "w-full font-medium py-3.5 rounded-lg transition-colors mt-2 flex items-center justify-center gap-2 " +
+                    (isSuccess ? "bg-green-500 text-white" : "bg-[var(--color-gold-500)] hover:bg-[var(--color-gold-600)] text-white")
+                  }
                 >
-                  Send Inquiry
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 size={20} className="animate-spin" />
+                      Sending...
+                    </>
+                  ) : isSuccess ? (
+                    <>
+                      <CheckCircle2 size={20} />
+                      Sent Successfully!
+                    </>
+                  ) : (
+                    "Send Inquiry"
+                  )}
                 </button>
               </form>
             </div>

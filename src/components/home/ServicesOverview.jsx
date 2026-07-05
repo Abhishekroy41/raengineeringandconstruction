@@ -3,6 +3,7 @@ import { Compass, Map, Building2, Ruler, Target, DraftingCompass, Mountain, Layo
 import SectionHeading from "../common/SectionHeading";
 import AutoSlider from "../common/AutoSlider";
 import { surveyServices } from "../../data/services";
+import { motion } from "framer-motion";
 
 // Select top 8 services for the home page grid to match the 4-column layout vibe
 const topServices = [
@@ -63,9 +64,8 @@ const topServices = [
     ...surveyServices[10], 
     icon: DraftingCompass,
     images: [
-      "./Gallery/Total_station_work/WhatsApp Image 2026-07-03 at 5.27.14 PM.jpeg",
-      "./Gallery/Total_station_work/WhatsApp Image 2026-07-03 at 5.27.14 PM (1).jpeg",
-      "./Gallery/Total_station_work/WhatsApp Image 2026-07-03 at 5.27.14 PM (2).jpeg"
+      "./Images/total_stat (1).jpeg",
+      "./Images/total_stat (2).jpeg"
     ]
   }, // Total Station
 ];
@@ -105,11 +105,15 @@ export default function ServicesOverview() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {topServices.map((service) => {
+          {topServices.map((service, index) => {
             const Icon = service.icon;
             return (
-              <div 
+              <motion.div 
                 key={service.id} 
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group bg-white rounded-xl border border-[var(--color-mist)] overflow-hidden hover:border-[var(--color-gold-500)] hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.1)] transition-all duration-300 flex flex-col"
               >
                 {/* Image Slider Layer */}
@@ -135,7 +139,7 @@ export default function ServicesOverview() {
                     </h4>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

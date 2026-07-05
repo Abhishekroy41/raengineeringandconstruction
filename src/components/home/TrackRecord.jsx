@@ -1,6 +1,7 @@
 import { Map, Compass, Box, Palette, Building2, CheckCircle } from "lucide-react";
 import SectionHeading from "../common/SectionHeading";
 import AutoSlider from "../common/AutoSlider";
+import { motion } from "framer-motion";
 
 const lifecycleSteps = [
   {
@@ -83,7 +84,13 @@ export default function TrackRecord() {
               const isEven = idx % 2 !== 0; // Alternating layout
               
               return (
-                <div key={step.id} className={`relative flex flex-col md:flex-row items-center gap-8 md:gap-16 ${isEven ? 'md:flex-row-reverse' : ''}`}>
+                <motion.div 
+                  key={step.id} 
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.6 }}
+                  className={`relative flex flex-col md:flex-row items-center gap-8 md:gap-16 ${isEven ? 'md:flex-row-reverse' : ''}`}>
                   
                   {/* Timeline Dot (Desktop only) */}
                   <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-[var(--color-mist)] rounded-full border-[6px] border-white items-center justify-center shadow-sm z-10">
@@ -117,7 +124,7 @@ export default function TrackRecord() {
                     <p className="text-[var(--color-slate)] leading-relaxed md:text-lg">{step.description}</p>
                   </div>
                   
-                </div>
+                </motion.div>
               );
             })}
           </div>

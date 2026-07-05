@@ -36,15 +36,9 @@ export default function AboutIntro() {
   // Placeholder images - user will provide actual ones later
   const introImages = [
     `${base}Images/machine1.jpeg`,
-    `${base}Images/machine2.jpeg`,
-    `${base}Images/tgdepmachine3.jpg`,
-    `${base}Images/total_station_survey.jpeg`,
-    `${base}Images/WhatsApp Image 2026-07-01 at 2.22.15 PM (1).jpeg`,
-    `${base}Images/WhatsApp Image 2026-07-01 at 2.22.24 PM (1).jpeg`,
-    `${base}Images/WhatsApp Image 2026-07-01 at 3.32.37 PM (1).jpeg`,
-    `${base}Images/WhatsApp Image 2026-07-01 at 3.32.44 PM (1).jpeg`,
-    `${base}Images/WhatsApp Image 2026-07-01 at 3.32.56 PM (1).jpeg`,
-    `${base}Images/WhatsApp Image 2026-07-01 at 3.34.57 PM (1).jpeg`
+    `${base}Images/total_stat (1).jpeg`,
+    `${base}Images/project_building_const.jpg`,
+    `${base}Images/total_station_survey.jpeg`
   ];
 
   return (

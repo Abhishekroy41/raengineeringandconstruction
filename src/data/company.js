@@ -56,10 +56,10 @@ export const company = {
     {
       id: "eq-2",
       badge: "TS",
-      title: "GeoMax Total Station",
+      title: "Total Station",
       subtitle: "2″ ACCURACY",
       description: "Precision instrument for layout, setting out, topographical survey, contour survey, and engineering measurements.",
-      image: "./Images/machine1.jpeg"
+      image: "./Images/total_stat (1).jpeg"
     },
     {
       id: "eq-3",

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Phone } from "lucide-react";
+import { motion } from "framer-motion";
 import { company } from "../../data/company";
 
 export default function Hero() {
@@ -60,19 +61,35 @@ export default function Hero() {
       {/* Faint contour-line texture watermark - Removed for performance (lag over video) */}
 
       <div className="relative max-w-6xl mx-auto px-5 md:px-8 pt-20 pb-24 md:pt-28 md:pb-32">
-        <span className="font-sans text-sm md:text-base uppercase tracking-widest text-[var(--color-gold-500)] font-bold drop-shadow-md">
+        <motion.span 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="inline-block font-sans text-sm md:text-base uppercase tracking-widest text-[var(--color-gold-500)] font-bold drop-shadow-md">
           Precision &middot; Quality &middot; Trust
-        </span>
+        </motion.span>
 
-        <h1 className="font-display mt-4 text-4xl sm:text-5xl md:text-7xl font-black leading-[1.15] max-w-4xl drop-shadow-xl tracking-tight text-transparent [-webkit-text-stroke:1px_white] md:[-webkit-text-stroke:2px_white]">
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="font-display mt-4 text-4xl sm:text-5xl md:text-7xl font-black leading-[1.15] max-w-4xl drop-shadow-xl tracking-tight text-transparent [-webkit-text-stroke:1px_white] md:[-webkit-text-stroke:2px_white]">
           Building the Future with Unmatched Precision
-        </h1>
+        </motion.h1>
 
-        <p className="mt-6 max-w-xl text-lg md:text-xl text-white/95 font-medium leading-relaxed drop-shadow-lg">
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mt-6 max-w-xl text-lg md:text-xl text-white/95 font-medium leading-relaxed drop-shadow-lg">
           Your trusted partner for advanced Land Surveying, complete Construction services, and expert Design Consultancy.
-        </p>
+        </motion.p>
 
-        <div className="mt-10 flex flex-wrap items-center gap-4">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="mt-10 flex flex-wrap items-center gap-4">
           <Link
             to="/contact"
             className="inline-flex items-center gap-2 rounded-full bg-[var(--color-gold-500)] text-[var(--color-navy-950)] font-semibold text-sm px-6 py-3.5 hover:bg-[var(--color-gold-600)] transition-colors"
@@ -87,7 +104,7 @@ export default function Hero() {
             <Phone size={15} />
             {company.contact.phoneDisplay}
           </a>
-        </div>
+        </motion.div>
 
         {/* Founder credential strip */}
         <div className="mt-16 pt-8 border-t border-white/10 flex flex-wrap items-center gap-x-10 gap-y-3 text-sm text-white/60 mb-8 md:mb-16">

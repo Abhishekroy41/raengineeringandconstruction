@@ -5,10 +5,14 @@ import { company } from "../data/company";
 
 export default function About() {
   return (
-    <div className="bg-[var(--color-paper)] min-h-screen pt-24 pb-20">
+    <div className="bg-[var(--color-paper)] min-h-screen pt-24 pb-20 relative overflow-hidden">
+      
+      {/* Page-level Background Decoration behind the card */}
+      <div className="absolute top-0 left-0 w-full h-[900px] bg-gradient-to-b from-[var(--color-mist)] via-[var(--color-mist)]/30 to-transparent pointer-events-none z-0"></div>
+      <div className="absolute top-0 left-0 w-full h-[900px] contour-bg-light opacity-50 [mask-image:linear-gradient(to_bottom,black_40%,transparent)] pointer-events-none z-0"></div>
       
       {/* Introduction Section */}
-      <div id="who-we-are" className="max-w-6xl mx-auto px-5 md:px-8 mb-20">
+      <div id="who-we-are" className="max-w-6xl mx-auto px-5 md:px-8 mb-20 relative z-10">
         
         {/* Subtle Heading Container */}
         <div className="bg-white rounded-[2.5rem] p-6 md:p-8 lg:p-10 shadow-sm border border-gray-100 mb-10 relative overflow-hidden">
@@ -24,44 +28,65 @@ export default function About() {
           </div>
         </div>
         
-        <div className="bg-white border border-[var(--color-mist)] rounded-2xl p-8 md:p-10 shadow-sm mt-8 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 contour-bg-light opacity-50 rounded-bl-full pointer-events-none"></div>
+        <div className="relative mt-12 group/card cursor-default">
+          {/* Gradient Glow Shadow behind the card */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-navy-700)] via-[var(--color-gold-500)] to-[var(--color-navy-700)] rounded-3xl blur-2xl opacity-15 group-hover/card:opacity-40 transition-opacity duration-500"></div>
+          
+          {/* Main Card Element */}
+          <div className="relative rounded-3xl p-8 md:p-12 bg-white border-t-8 border-t-[var(--color-navy-800)] border-x border-b border-[var(--color-mist)] transform group-hover/card:-translate-y-2 transition-transform duration-500 overflow-hidden z-10 shadow-sm">
+          
+          <div className="absolute inset-0 contour-bg-light opacity-30 pointer-events-none"></div>
           
           <div className="relative z-10 flex flex-col md:flex-row gap-10 items-start">
             <div className="w-full md:w-1/3">
-              <div className="aspect-square rounded-xl overflow-hidden mb-6 border-2 border-white shadow-lg relative group">
+              <div className="aspect-square rounded-full overflow-hidden mb-6 border-4 border-[var(--color-mist)] shadow-lg relative group w-48 h-48 mx-auto md:mx-0 md:w-full md:h-auto">
                 <img 
-                  src={`${import.meta.env.BASE_URL}Images/profile_pic.png`} 
+                  src={`${import.meta.env.BASE_URL}Images/Profile.jpeg`} 
                   alt={company.ownerName} 
-                  className="w-full h-full object-cover object-center transform transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover object-center transform transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-navy-900)]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
-              <h3 className="font-display text-2xl font-semibold text-[var(--color-navy-800)]">{company.ownerName}</h3>
-              <p className="text-[var(--color-gold-600)] font-medium text-sm mt-1">{company.ownerTitle}</p>
-              
-              <div className="flex items-center gap-2 mt-4 text-[var(--color-slate)] text-sm">
-                <Users size={18} className="text-[var(--color-navy-700)]" />
-                <span className="font-medium">{company.team.size}</span>
+              <div className="text-center md:text-left">
+                <h3 className="font-display text-3xl font-bold text-[var(--color-navy-950)] tracking-tight">{company.ownerName}</h3>
+                <p className="text-[var(--color-gold-600)] font-semibold text-sm mt-1.5 uppercase tracking-wider">{company.ownerTitle}</p>
+                
+                <div className="flex justify-center md:justify-start items-center gap-2 mt-5 text-[var(--color-slate)] text-sm bg-[var(--color-mist)] inline-flex px-4 py-2 rounded-full">
+                  <Users size={16} className="text-[var(--color-navy-700)]" />
+                  <span className="font-medium">{company.team.size}</span>
+                </div>
               </div>
             </div>
             
-            <div className="w-full md:w-2/3">
-              <h4 className="font-display text-xl text-[var(--color-navy-800)] mb-4">The Visionary Behind the Firm</h4>
-              <p className="text-[var(--color-slate)] leading-relaxed mb-8">
-                {company.team.founderBio}
+            <div className="w-full md:w-2/3 pt-2">
+              <h4 className="font-display text-2xl text-[var(--color-navy-800)] mb-5 flex items-center gap-3">
+                <span className="w-8 h-1 bg-[var(--color-gold-500)] rounded-full hidden md:block"></span>
+                The Visionary Behind the Firm
+              </h4>
+              <p className="text-[var(--color-slate)] leading-relaxed mb-10 text-lg relative">
+                <span className="absolute -top-4 -left-6 text-6xl text-[var(--color-mist)] font-serif pointer-events-none">"</span>
+                <span className="relative z-10">{company.team.founderBio}</span>
               </p>
               
-              <h5 className="font-mono-data text-xs uppercase tracking-widest text-[var(--color-navy-700)] mb-4 font-semibold">Key Roles & Responsibilities</h5>
-              <ul className="space-y-3">
-                {company.team.founderRoles.map((role, idx) => (
-                  <li key={idx} className="flex items-start text-sm text-[var(--color-ink)]">
-                    <ChevronRight size={16} className="shrink-0 text-[var(--color-gold-500)] mt-0.5 mr-2" />
-                    {role}
-                  </li>
-                ))}
-              </ul>
+              <div className="bg-[var(--color-mist)]/50 p-6 rounded-2xl border border-[var(--color-mist)]">
+                <h5 className="font-mono-data text-xs uppercase tracking-widest text-[var(--color-navy-800)] mb-5 font-bold flex items-center gap-2">
+                  <ShieldCheck size={16} className="text-[var(--color-gold-500)]" />
+                  Key Roles & Responsibilities
+                </h5>
+                <ul className="space-y-4">
+                  {company.team.founderRoles.map((role, idx) => (
+                    <li key={idx} className="flex items-start text-sm text-[var(--color-ink)] font-medium">
+                      <div className="mt-0.5 mr-3 w-5 h-5 rounded-full bg-[var(--color-gold-500)]/10 flex items-center justify-center shrink-0">
+                        <CheckCircle2 size={12} className="text-[var(--color-gold-600)]" />
+                      </div>
+                      {role}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
+          </div>
+          
           </div>
         </div>
       </div>
